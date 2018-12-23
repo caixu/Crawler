@@ -21,7 +21,7 @@ pipeline {
         }
         success{
 
-            docker run -p 9000:8080 -tid --name jenkinstomcat tomcat
+            sh 'docker run -p 9000:8080 -tid --name jenkinstomcat tomcat'
         }
         failure{
             echo 'this will run only if failed'
