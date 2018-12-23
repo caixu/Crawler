@@ -17,7 +17,9 @@ pipeline {
 
         always{
 
-            echo 'This will always run'
+            mail to:'1105823913@qq.com',
+                 subject:"jenkins test",
+                 body:"this is just a jenkins test"
         }
         success{
 
