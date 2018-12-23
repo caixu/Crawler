@@ -3,8 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'echo "Hello World"'
-                sh 'echo "Multiline shell steps works too"'
+                retry(3){
+                    sh 'echo this is retry'
+                }
+
+                timeout(time:3,unit:'SECONDS'){
+                    sh 'echo timeout excute'
+                }
             }
         }
     }
