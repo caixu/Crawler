@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent{
+        docker{
+
+        }
+    }
 
     environment{
         DISABLE_AUTH    = 'true'
@@ -9,18 +13,6 @@ pipeline {
         stage('Test'){
             steps{
                 sh 'printenv'
-            }
-        }
-
-        stage('check'){
-            steps{
-                input "dose the staging environment look ok?"
-            }
-        }
-
-        stage('Deploy'){
-            steps{
-                sh 'echo this is deploy'
             }
         }
     }
@@ -33,7 +25,7 @@ pipeline {
         }
         success{
 
-            echo 'this will run only if successful'
+            docker run -p 9000:8080 -tid --name jenkinstomcat tomcat
         }
         failure{
             echo 'this will run only if failed'
