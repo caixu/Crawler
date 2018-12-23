@@ -1,9 +1,5 @@
 pipeline {
-    agent{
-        docker{
-
-        }
-    }
+    agent any
 
     environment{
         DISABLE_AUTH    = 'true'
