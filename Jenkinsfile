@@ -1,15 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker {image 'node:7-alpine'}
+    }
     stages {
-        stage('Deploy') {
-            steps {
-                retry(3){
-                    sh 'echo this is retry'
-                }
-
-                timeout(time:3,unit:'SECONDS'){
-                    sh 'echo timeout excute'
-                }
+        stage('Test'){
+            steps{
+                sh 'node --version'
             }
         }
     }
