@@ -11,15 +11,25 @@ pipeline {
                 sh 'printenv'
             }
         }
+
+        stage('check'){
+            steps{
+                input "dose the staging environment look ok?"
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                sh 'echo this is deploy'
+            }
+        }
     }
 
     post{
 
         always{
 
-            mail to:'1105823913@qq.com',
-                 subject:"jenkins test",
-                 body:"this is just a jenkins test"
+            echo 'always run'
         }
         success{
 
